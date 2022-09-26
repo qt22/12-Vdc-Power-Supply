@@ -1,0 +1,482 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD21\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2022-09-26</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">10:27:10 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc" class="file"><acronym title="C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc">C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">46</td></tr>
+</table>
+</td>
+</table><a name="IDM5SRNO325HOOI5PCSMYG20P4LC4V3H0X3WF0KN54C5HRLUMRLVE"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOGABEPFFJYLMH0WS2UVIW555FHXWWCSZZG3QCDDDBLSYXUUIX4NP">Clearance Constraint (Gap=10mil) (All),(All)</a></td>
+<td class="column2">9</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZEZSJQ5TED3FIABVA402KBQLHOMGQAKFUM4SZJNPA4YBPOKYOSQJ">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXCENQSXUTXUTG24CVCHETASEIDOP42J53H120H2JS3L0JDESKQE">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">13</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLHTFD21RLUENKB5VOQGKOLGTFPA2JIILAIUSPIBM3PN0QBDJSKYG">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUAI2ODXNGW2KBRZEZSSHHLKDAIOD41MJCZZKS0MLQV40K2AFSUBC">Width Constraint (Min=10mil) (Max=10mil) (Preferred=10mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1S1OKZYH4UFIIVZL0DEXF222AN2NHKR4BFXQNB1GQZ3IDRAMZOL">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWHJZBHP45VQKP3JA3LT2VD1Y0PG42FKJXJOOQSYOGT250YE0OCK">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGFNNHNIIVOZPNKJM0ENRWEOLNJRRJU323IQ2SIXUHNQJFN3HDE">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVZB43DBSZJACGRKOFYFYEMJVVH4JPE4IQ5EH0QEVH5HYMYOXBW4D">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">10</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZ3EU2S0KZ0V4K5O443M1JRKYNHAOI3LSLBNS2TE2XUPDVUKPCSRJ">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">13</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJGUXHH0UC1CXK3VHZADH4WNSPED3TKWZSFJUL5LZZIOIDPW3VMCL">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDG1A35ZGODZYPJPFROODO1VHPVNA43CEPJTBX5LFR4WBIP2JDGIE">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0H4P10OKVYSHMWVB1FNWTEQWFOEZOTKGYW1LZPMVX55AOCRAMIH">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">46</td>
+</tr>
+</table><br><a name="IDOGABEPFFJYLMH0WS2UVIW555FHXWWCSZZG3QCDDDBLSYXUUIX4NP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1930.32mil|Location2.X=1941.57mil|Location1.Y=2088.903mil|Location2.Y=2100.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1930.32mil|Location2.X=1941.57mil|Location1.Y=2088.903mil|Location2.Y=2100.153mil|Absolute=True">Clearance Constraint: (7.874mil &lt; 10mil) Between Pad U1-1(1909.37mil,2104.37mil) on Top Layer And Pad U1-2(1909.37mil,2084.685mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2101.58mil|Location2.X=2112.83mil|Location1.Y=2088.903mil|Location2.Y=2100.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2101.58mil|Location2.X=2112.83mil|Location1.Y=2088.903mil|Location2.Y=2100.153mil|Absolute=True">Clearance Constraint: (7.874mil &lt; 10mil) Between Pad U1-10(2080.63mil,2104.37mil) on Top Layer And Pad U1-9(2080.63mil,2084.685mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2101.58mil|Location2.X=2112.83mil|Location1.Y=2088.45mil|Location2.Y=2099.7mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2101.58mil|Location2.X=2112.83mil|Location1.Y=2088.45mil|Location2.Y=2099.7mil|Absolute=True">Clearance Constraint: (8.78mil &lt; 10mil) Between Pad U1-10(2080.63mil,2104.37mil) on Top Layer And Track (2080.63mil,2084.685mil)(2276.772mil,2084.685mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1930.32mil|Location2.X=1941.57mil|Location1.Y=2069.218mil|Location2.Y=2080.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1930.32mil|Location2.X=1941.57mil|Location1.Y=2069.218mil|Location2.Y=2080.468mil|Absolute=True">Clearance Constraint: (7.874mil &lt; 10mil) Between Pad U1-2(1909.37mil,2084.685mil) on Top Layer And Pad U1-3(1909.37mil,2065mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1930.32mil|Location2.X=1941.57mil|Location1.Y=2049.532mil|Location2.Y=2060.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1930.32mil|Location2.X=1941.57mil|Location1.Y=2049.532mil|Location2.Y=2060.782mil|Absolute=True">Clearance Constraint: (7.874mil &lt; 10mil) Between Pad U1-3(1909.37mil,2065mil) on Top Layer And Pad U1-4(1909.37mil,2045.315mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2101.58mil|Location2.X=2112.83mil|Location1.Y=2029.847mil|Location2.Y=2041.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2101.58mil|Location2.X=2112.83mil|Location1.Y=2029.847mil|Location2.Y=2041.097mil|Absolute=True">Clearance Constraint: (7.874mil &lt; 10mil) Between Pad U1-6(2080.63mil,2025.63mil) on Top Layer And Pad U1-7(2080.63mil,2045.315mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2101.58mil|Location2.X=2112.83mil|Location1.Y=2049.532mil|Location2.Y=2060.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2101.58mil|Location2.X=2112.83mil|Location1.Y=2049.532mil|Location2.Y=2060.782mil|Absolute=True">Clearance Constraint: (7.874mil &lt; 10mil) Between Pad U1-7(2080.63mil,2045.315mil) on Top Layer And Pad U1-8(2080.63mil,2065mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2101.58mil|Location2.X=2112.83mil|Location1.Y=2069.218mil|Location2.Y=2080.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2101.58mil|Location2.X=2112.83mil|Location1.Y=2069.218mil|Location2.Y=2080.468mil|Absolute=True">Clearance Constraint: (7.874mil &lt; 10mil) Between Pad U1-8(2080.63mil,2065mil) on Top Layer And Pad U1-9(2080.63mil,2084.685mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2101.58mil|Location2.X=2112.83mil|Location1.Y=2069.67mil|Location2.Y=2080.92mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2101.58mil|Location2.X=2112.83mil|Location1.Y=2069.67mil|Location2.Y=2080.92mil|Absolute=True">Clearance Constraint: (8.78mil &lt; 10mil) Between Pad U1-8(2080.63mil,2065mil) on Top Layer And Track (2080.63mil,2084.685mil)(2276.772mil,2084.685mil) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDXCENQSXUTXUTG24CVCHETASEIDOP42J53H120H2JS3L0JDESKQE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1872.89mil|Location2.X=2092.559mil|Location1.Y=2074.78mil|Location2.Y=2447.284mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1872.89mil|Location2.X=2092.559mil|Location1.Y=2074.78mil|Location2.Y=2447.284mil|Absolute=True">Un-Routed Net Constraint: Net NetC1_1 Between Pad U1-2(1909.37mil,2084.685mil) on Top Layer And Pad C1-1(2065mil,2428.583mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1453.504mil|Location2.X=1945.85mil|Location1.Y=1496.26mil|Location2.Y=2035.535mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1453.504mil|Location2.X=1945.85mil|Location1.Y=1496.26mil|Location2.Y=2035.535mil|Absolute=True">Un-Routed Net Constraint: Net NetC2_1 Between Pad C2-1(1485mil,1516.929mil) on Top Layer And Pad U1-5(1909.37mil,2025.63mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1516.26mil|Location2.X=1945.85mil|Location1.Y=1978.504mil|Location2.Y=2114.276mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1516.26mil|Location2.X=1945.85mil|Location1.Y=1978.504mil|Location2.Y=2114.276mil|Absolute=True">Un-Routed Net Constraint: Net NetC3_1 Between Pad C3-1(1536.929mil,2010mil) on Top Layer And Pad U1-1(1909.37mil,2104.37mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1632.402mil|Location2.X=2007.284mil|Location1.Y=1978.504mil|Location2.Y=2077.284mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1632.402mil|Location2.X=2007.284mil|Location1.Y=1978.504mil|Location2.Y=2077.284mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C3-2(1653.071mil,2010mil) on Top Layer And Via (1973.347mil,2043.347mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1173.677mil|Location2.X=1945.85mil|Location1.Y=2035.409mil|Location2.Y=2609.905mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1173.677mil|Location2.X=1945.85mil|Location1.Y=2035.409mil|Location2.Y=2609.905mil|Absolute=True">Un-Routed Net Constraint: Net NetC2_1 Between Pad D1-2(1220mil,2561.614mil) on Top Layer [Unplated] And Pad U1-4(1909.37mil,2045.315mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1148.677mil|Location2.X=1945.85mil|Location1.Y=1623.323mil|Location2.Y=2074.905mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1148.677mil|Location2.X=1945.85mil|Location1.Y=1623.323mil|Location2.Y=2074.905mil|Absolute=True">Un-Routed Net Constraint: Net NetC1_2 Between Pad D2-2(1195mil,1671.614mil) on Top Layer [Unplated] And Pad U1-3(1909.37mil,2065mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1758.726mil|Location2.X=1945.85mil|Location1.Y=1722.358mil|Location2.Y=2114.276mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1758.726mil|Location2.X=1945.85mil|Location1.Y=1722.358mil|Location2.Y=2114.276mil|Absolute=True">Un-Routed Net Constraint: Net NetC3_1 Between Pad R1-2(1779.508mil,1755mil) on Top Layer And Pad U1-1(1909.37mil,2104.37mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2044.15mil|Location2.X=2393.252mil|Location1.Y=1754.425mil|Location2.Y=2055.22mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2044.15mil|Location2.X=2393.252mil|Location1.Y=1754.425mil|Location2.Y=2055.22mil|Absolute=True">Un-Routed Net Constraint: Net NetC3_1 Between Pad U1-7(2080.63mil,2045.315mil) on Top Layer And Pad R4-1(2372.52mil,1785mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2044.15mil|Location2.X=2458.213mil|Location1.Y=1754.425mil|Location2.Y=2074.905mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2044.15mil|Location2.X=2458.213mil|Location1.Y=1754.425mil|Location2.Y=2074.905mil|Absolute=True">Un-Routed Net Constraint: Net NetR4_2 Between Pad U1-8(2080.63mil,2065mil) on Top Layer And Pad R4-2(2437.48mil,1785mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1872.89mil|Location2.X=2117.11mil|Location1.Y=2035.409mil|Location2.Y=2114.276mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1872.89mil|Location2.X=2117.11mil|Location1.Y=2035.409mil|Location2.Y=2114.276mil|Absolute=True">Un-Routed Net Constraint: Net NetC3_1 Between Pad U1-1(1909.37mil,2104.37mil) on Top Layer And Pad U1-7(2080.63mil,2045.315mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1809.37mil|Location2.X=2161.417mil|Location1.Y=1965mil|Location2.Y=2605mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1809.37mil|Location2.X=2161.417mil|Location1.Y=1965mil|Location2.Y=2605mil|Absolute=True">Un-Routed Net Constraint: Net NetC1_2 Between Pad U1-3(1909.37mil,2065mil) on Top Layer And Track (1835mil,2505mil)(2061.417mil,2505mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1872.89mil|Location2.X=1945.85mil|Location1.Y=2015.724mil|Location2.Y=2055.22mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1872.89mil|Location2.X=1945.85mil|Location1.Y=2015.724mil|Location2.Y=2055.22mil|Absolute=True">Un-Routed Net Constraint: Net NetC2_1 Between Pad U1-5(1909.37mil,2025.63mil) on Top Layer And Pad U1-4(1909.37mil,2045.315mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1020.097mil|Location2.X=2809.903mil|Location1.Y=1365.097mil|Location2.Y=2779.903mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1020.097mil|Location2.X=2809.903mil|Location1.Y=1365.097mil|Location2.Y=2779.903mil|Absolute=True">Un-Routed Net Constraint: Split Plane  (No Net) on Plane (PWR) Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDVZB43DBSZJACGRKOFYFYEMJVVH4JPE4IQ5EH0QEVH5HYMYOXBW4D"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.706mil|Location2.X=1954.956mil|Location1.Y=2098.745mil|Location2.Y=2109.995mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.706mil|Location2.X=1954.956mil|Location1.Y=2098.745mil|Location2.Y=2109.995mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.961mil &lt; 10mil) Between Pad U1-1(1909.37mil,2104.37mil) on Top Layer And Pad U1-223(1995mil,2065mil) on Top Layer [Top Solder] Mask Sliver [6.961mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2035.044mil|Location2.X=2046.294mil|Location1.Y=2098.745mil|Location2.Y=2109.995mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2035.044mil|Location2.X=2046.294mil|Location1.Y=2098.745mil|Location2.Y=2109.995mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.961mil &lt; 10mil) Between Pad U1-10(2080.63mil,2104.37mil) on Top Layer And Pad U1-223(1995mil,2065mil) on Top Layer [Top Solder] Mask Sliver [6.961mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.706mil|Location2.X=1954.956mil|Location1.Y=2079.06mil|Location2.Y=2090.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.706mil|Location2.X=1954.956mil|Location1.Y=2079.06mil|Location2.Y=2090.31mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.961mil &lt; 10mil) Between Pad U1-2(1909.37mil,2084.685mil) on Top Layer And Pad U1-223(1995mil,2065mil) on Top Layer [Top Solder] Mask Sliver [6.961mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.706mil|Location2.X=1954.956mil|Location1.Y=2059.375mil|Location2.Y=2070.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.706mil|Location2.X=1954.956mil|Location1.Y=2059.375mil|Location2.Y=2070.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.961mil &lt; 10mil) Between Pad U1-223(1995mil,2065mil) on Top Layer And Pad U1-3(1909.37mil,2065mil) on Top Layer [Top Solder] Mask Sliver [6.961mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.706mil|Location2.X=1954.956mil|Location1.Y=2039.69mil|Location2.Y=2050.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.706mil|Location2.X=1954.956mil|Location1.Y=2039.69mil|Location2.Y=2050.94mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.961mil &lt; 10mil) Between Pad U1-223(1995mil,2065mil) on Top Layer And Pad U1-4(1909.37mil,2045.315mil) on Top Layer [Top Solder] Mask Sliver [6.961mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.706mil|Location2.X=1954.956mil|Location1.Y=2020.005mil|Location2.Y=2031.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.706mil|Location2.X=1954.956mil|Location1.Y=2020.005mil|Location2.Y=2031.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.961mil &lt; 10mil) Between Pad U1-223(1995mil,2065mil) on Top Layer And Pad U1-5(1909.37mil,2025.63mil) on Top Layer [Top Solder] Mask Sliver [6.961mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2035.044mil|Location2.X=2046.294mil|Location1.Y=2020.005mil|Location2.Y=2031.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2035.044mil|Location2.X=2046.294mil|Location1.Y=2020.005mil|Location2.Y=2031.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.961mil &lt; 10mil) Between Pad U1-223(1995mil,2065mil) on Top Layer And Pad U1-6(2080.63mil,2025.63mil) on Top Layer [Top Solder] Mask Sliver [6.961mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2035.044mil|Location2.X=2046.294mil|Location1.Y=2039.69mil|Location2.Y=2050.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2035.044mil|Location2.X=2046.294mil|Location1.Y=2039.69mil|Location2.Y=2050.94mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.961mil &lt; 10mil) Between Pad U1-223(1995mil,2065mil) on Top Layer And Pad U1-7(2080.63mil,2045.315mil) on Top Layer [Top Solder] Mask Sliver [6.961mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2035.044mil|Location2.X=2046.294mil|Location1.Y=2059.375mil|Location2.Y=2070.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2035.044mil|Location2.X=2046.294mil|Location1.Y=2059.375mil|Location2.Y=2070.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.961mil &lt; 10mil) Between Pad U1-223(1995mil,2065mil) on Top Layer And Pad U1-8(2080.63mil,2065mil) on Top Layer [Top Solder] Mask Sliver [6.961mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2035.044mil|Location2.X=2046.294mil|Location1.Y=2079.06mil|Location2.Y=2090.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2035.044mil|Location2.X=2046.294mil|Location1.Y=2079.06mil|Location2.Y=2090.31mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.961mil &lt; 10mil) Between Pad U1-223(1995mil,2065mil) on Top Layer And Pad U1-9(2080.63mil,2084.685mil) on Top Layer [Top Solder] Mask Sliver [6.961mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDZ3EU2S0KZ0V4K5O443M1JRKYNHAOI3LSLBNS2TE2XUPDVUKPCSRJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1849.633mil|Location2.X=1860.883mil|Location1.Y=1716.127mil|Location2.Y=1727.377mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1849.633mil|Location2.X=1860.883mil|Location1.Y=1716.127mil|Location2.Y=1727.377mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.011mil &lt; 10mil) Between Pad R1-1(1880mil,1755mil) on Top Layer And Track (1812.102mil,1720.551mil)(1847.407mil,1720.551mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.011mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1849.633mil|Location2.X=1860.883mil|Location1.Y=1782.623mil|Location2.Y=1793.873mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1849.633mil|Location2.X=1860.883mil|Location1.Y=1782.623mil|Location2.Y=1793.873mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.011mil &lt; 10mil) Between Pad R1-1(1880mil,1755mil) on Top Layer And Track (1812.102mil,1789.449mil)(1847.407mil,1789.449mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.011mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1798.625mil|Location2.X=1809.875mil|Location1.Y=1716.127mil|Location2.Y=1727.377mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1798.625mil|Location2.X=1809.875mil|Location1.Y=1716.127mil|Location2.Y=1727.377mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.011mil &lt; 10mil) Between Pad R1-2(1779.508mil,1755mil) on Top Layer And Track (1812.102mil,1720.551mil)(1847.407mil,1720.551mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.011mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1798.625mil|Location2.X=1809.875mil|Location1.Y=1782.623mil|Location2.Y=1793.873mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1798.625mil|Location2.X=1809.875mil|Location1.Y=1782.623mil|Location2.Y=1793.873mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.011mil &lt; 10mil) Between Pad R1-2(1779.508mil,1755mil) on Top Layer And Track (1812.102mil,1789.449mil)(1847.407mil,1789.449mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.011mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2343.863mil|Location2.X=2355.113mil|Location1.Y=2129.708mil|Location2.Y=2140.958mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2343.863mil|Location2.X=2355.113mil|Location1.Y=2129.708mil|Location2.Y=2140.958mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.704mil &lt; 10mil) Between Pad R3-1(2380mil,2164.291mil) on Top Layer And Text "R2" (2335mil,2066mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.704mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2347.8mil|Location2.X=2359.05mil|Location1.Y=2187.21mil|Location2.Y=2198.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2347.8mil|Location2.X=2359.05mil|Location1.Y=2187.21mil|Location2.Y=2198.46mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R3-1(2380mil,2164.291mil) on Top Layer And Track (2353.425mil,2200.709mil)(2353.425mil,2208.583mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2400.95mil|Location2.X=2412.2mil|Location1.Y=2187.21mil|Location2.Y=2198.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2400.95mil|Location2.X=2412.2mil|Location1.Y=2187.21mil|Location2.Y=2198.46mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R3-1(2380mil,2164.291mil) on Top Layer And Track (2406.575mil,2200.709mil)(2406.575mil,2208.583mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2347.8mil|Location2.X=2359.05mil|Location1.Y=2210.832mil|Location2.Y=2222.082mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2347.8mil|Location2.X=2359.05mil|Location1.Y=2210.832mil|Location2.Y=2222.082mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R3-2(2380mil,2245mil) on Top Layer And Track (2353.425mil,2200.709mil)(2353.425mil,2208.583mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2400.95mil|Location2.X=2412.2mil|Location1.Y=2210.832mil|Location2.Y=2222.082mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2400.95mil|Location2.X=2412.2mil|Location1.Y=2210.832mil|Location2.Y=2222.082mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R3-2(2380mil,2245mil) on Top Layer And Track (2406.575mil,2200.709mil)(2406.575mil,2208.583mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2387.564mil|Location2.X=2398.814mil|Location1.Y=1756.737mil|Location2.Y=1767.987mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2387.564mil|Location2.X=2398.814mil|Location1.Y=1756.737mil|Location2.Y=1767.987mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R4-1(2372.52mil,1785mil) on Top Layer And Track (2401.063mil,1762.362mil)(2408.937mil,1762.362mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2387.564mil|Location2.X=2398.814mil|Location1.Y=1802.013mil|Location2.Y=1813.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2387.564mil|Location2.X=2398.814mil|Location1.Y=1802.013mil|Location2.Y=1813.263mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R4-1(2372.52mil,1785mil) on Top Layer And Track (2401.063mil,1807.638mil)(2408.937mil,1807.638mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2411.186mil|Location2.X=2422.436mil|Location1.Y=1756.737mil|Location2.Y=1767.987mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2411.186mil|Location2.X=2422.436mil|Location1.Y=1756.737mil|Location2.Y=1767.987mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R4-2(2437.48mil,1785mil) on Top Layer And Track (2401.063mil,1762.362mil)(2408.937mil,1762.362mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2411.186mil|Location2.X=2422.436mil|Location1.Y=1802.013mil|Location2.Y=1813.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2411.186mil|Location2.X=2422.436mil|Location1.Y=1802.013mil|Location2.Y=1813.263mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R4-2(2437.48mil,1785mil) on Top Layer And Track (2401.063mil,1807.638mil)(2408.937mil,1807.638mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDJGUXHH0UC1CXK3VHZADH4WNSPED3TKWZSFJUL5LZZIOIDPW3VMCL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2363.9mil|Location2.X=2375.15mil|Location1.Y=2624.385mil|Location2.Y=2635.635mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\dc_dc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2363.9mil|Location2.X=2375.15mil|Location1.Y=2624.385mil|Location2.Y=2635.635mil|Absolute=True">Silk To Silk Clearance Constraint: (9.076mil &lt; 10mil) Between Text "P1" (2280.013mil,2630.01mil) on Top Overlay And Track (2378mil,2502.953mil)(2378mil,2697.047mil) on Top Overlay Silk Text to Silk Clearance [9.076mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

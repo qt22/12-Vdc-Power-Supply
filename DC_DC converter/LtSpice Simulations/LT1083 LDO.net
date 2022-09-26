@@ -1,0 +1,16 @@
+* C:\Users\qitia\Desktop\Qi UWaterloo\Projects\dc-dc\DC_DC converter\LT1083 LDO.asc
+V1 N001 0 PWL(0 0 1 27)
+C1 N001 0 10µ
+R1 Vout N002 100
+C2 Vout 0 10µ
+R2 N002 0 863
+XU1 N002 Vout N001 LT1083
+R3 Vout N003 500
+D1 N003 0 W5AP-LZMZ-5K8L
+D2 Vout N001 1N5818
+.model D D
+.lib C:\Users\qitia\Documents\LTspiceXVII\lib\cmp\standard.dio
+.tran 1
+.lib LT1083.lib
+.backanno
+.end
